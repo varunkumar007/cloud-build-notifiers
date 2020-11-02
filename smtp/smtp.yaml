@@ -1,0 +1,20 @@
+apiVersion: cloud-build-notifiers/v1
+kind: SMTPNotifier
+metadata:
+  name: cbuild-smtp-notifier
+spec:
+  notification:
+    filter: build.status == Build.Status.SUCCESS
+    delivery:
+      server: smtp.gmail.com
+      port: '587'
+      sender: ivarunkumar007@gmail.com
+      from: varunkumar.inbaraj@gmail.com
+      recipients:
+      - ivarunkumar007@gmail.com
+      - varunk@zenithss.com
+      password:
+        secretRef: smtp-password
+  secrets:
+  - name: smtp-password
+    value: projects/781150265673/secrets/smtp-password/versions/1
